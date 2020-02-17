@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const routerUser = require('./routes/user/router')
-
-const port = process.env.DATABASE_URL || 5000;
+const routerUser = require("./routes/user/router");
+const db = require("./db");
+const port = process.env.PORT || 5000;
 
 app.use(routerUser);
 
