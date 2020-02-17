@@ -1,6 +1,6 @@
 # http requests
 
-http :5000/secret-endpoint Authorization:"Bearer $2b$10$LBPIZnwgXq3hSSz0YHU4G.zX0w3F1EDc./S0CZG9D7i4Ao9LhpJ8G"
+http :5000/secret-endpoint Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTgxOTU1MTY4LCJleHAiOjE1ODE5NjIzNjh9.MIDEbezQQHOHHSfmd4awnzhqnbnRtK-c3pdVA21gnho"
 
 # Postgres with docker.  
 
