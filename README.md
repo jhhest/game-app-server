@@ -1,3 +1,7 @@
+# Postgres with docker.  
+
+docker run -p 5432:5432 --name game-server -e POSTGRES_PASSWORD=password -d postgres
+
 # game server setup
 
 - Create a User: Model, endpoints, bcrypt, (signup)

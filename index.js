@@ -1,10 +1,10 @@
 const express = require("express");
-
 const app = express();
+const routerUser = require('./routes/user/router')
 
 const port = process.env.DATABASE_URL || 5000;
 
-app.get('/test', (request, response)=> response.send("Hello world, Test endpoint"))
+app.use(routerUser);
 
 app.listen(port, () =>
   console.log(`
