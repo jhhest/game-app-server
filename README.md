@@ -1,3 +1,7 @@
+# http requests
+
+http :5000/secret-endpoint Authorization:"Bearer $2b$10$LBPIZnwgXq3hSSz0YHU4G.zX0w3F1EDc./S0CZG9D7i4Ao9LhpJ8G"
+
 # Postgres with docker.  
 
 docker run -p 5432:5432 --name game-server -e POSTGRES_PASSWORD=password -d postgres
