@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const routerUser = require("./routes/user/router");
-const db = require("./db");
 const port = process.env.PORT || 5000;
 
-app.use(routerUser);
+app.use(cors(), express.json(), routerUser);
 
 app.listen(port, () =>
   console.log(`

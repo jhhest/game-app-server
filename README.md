@@ -11,10 +11,7 @@ docker run -p 5432:5432 --name game-server -e POSTGRES_PASSWORD=password -d post
 Notes From Reijn.
 Setup docker postgres
 
-- Folder structure
-- Connect to db / sync
 - Setup Cors
-- Test endpoint
 
 Route: POST user
 

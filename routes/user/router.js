@@ -1,6 +1,7 @@
 /**
- * FIXME: Username exits.
- * FIXME: EMAIL Taken.
+ * TODO: Username exits.
+ * TODO: EMAIL Taken.
+ * https://github.com/Reinoptland/evetify-server/blob/master/src/User/router.js
  */
 
 const { Router } = require("express");
