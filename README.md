@@ -20,7 +20,7 @@ Draw a wireframe of the gamelobby.
 
 ## Backend
 
-- [ ] Room model -> with id and home -> make a relationship. -> User.belongsTo(Room)
+- [x] Room model -> with id and home -> make a relationship. -> User.belongsTo(Room)
 - [ ] route to create a room -> Protected and test it with http pie.
 - [ ] stream -> "/stream" -> get allrooms and send on streem.
 - [ ] client side -> connect to room on app.js -> dispatch action/ setup reducer for rooms.

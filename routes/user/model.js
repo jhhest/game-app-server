@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../../db");
+const Room = require("../room/model");
 
 const User = db.define("user", {
   username: {
@@ -17,4 +18,7 @@ const User = db.define("user", {
     allowNull: false
   }
 });
+
+User.belongsTo(Room)
+
 module.exports = User;

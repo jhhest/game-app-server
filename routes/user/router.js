@@ -14,13 +14,13 @@ const User = require("./model");
 // find all users. Just a test.
 router.get("/user", (request, response, next) =>
   User.findAll()
-    .then(user => response.send(eeuser))
+    .then(user => response.send(user))
     .catch(error => next(error))
 );
 
-// http :5000/user username=jan email=jan@vanhest.work password=password
+// http :5000/user/signup username=jend email=jend@outlook.com password=password
 // Create a user
-router.post("/user", (request, response, next) => {
+router.post("/user/signup", (request, response, next) => {
   const { username, email, password } = request.body;
   User.create({
     username: username,
@@ -32,6 +32,7 @@ router.post("/user", (request, response, next) => {
 });
 
 // login
+// http :5000/user/login email=jend@outlook.com password=password
 router.post("/user/login", async (request, response, next) => {
   const { email, password } = request.body;
   if (!email || !password) {
