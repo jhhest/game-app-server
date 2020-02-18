@@ -12,6 +12,8 @@ router.post("/room/new", auth, async (request, response) => {
   response.send(await Room.create({name: name}));
 });
 
-// TODO: assigning an user to a room. 
+// TODO: assign user to a room. 
+
+
 
 module.exports = router;
