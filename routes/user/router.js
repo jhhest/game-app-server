@@ -58,15 +58,7 @@ router.post("/user/login", async (request, response, next) => {
         .send({ message: "Email or password is invalid" });
     }
   } catch (error) {
-    console.log("error.name", error);
-    switch (error.name) {
-      case "TypeError":
-        return response
-          .status(400)
-          .send({ message: "Email or password is not valid" });
-      default:
-        return response.status(400).send({ message: "Unknow error" });
-    }
+    next(error);
   }
 });
 
