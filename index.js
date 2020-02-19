@@ -3,11 +3,14 @@ const app = express();
 const cors = require("cors");
 const routerUser = require("./routes/user/router");
 const routerAuth = require("./auth/router");
-const routerRoom = require("./routes/room/router")
+const routerRoom = require("./routes/room/router");
+const auth = require("./auth/middleware");
+const { streamRouter, stream } = require("./routes/stream/router");
 
 const port = process.env.PORT || 5000;
 
 app.use(cors(), express.json(), routerAuth, routerUser, routerRoom);
+app.use("/stream", streamRouter);
 
 app.listen(port, () =>
   console.log(`
