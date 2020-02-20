@@ -1,14 +1,22 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const routerUser = require("./routes/user/router");
+const Sse = require("json-sse");
+
 const routerAuth = require("./auth/router");
-const routerRoom = require("./routes/room/router")
+const routerUser = require("./routes/user/router");
+const routerRoom = require("./routes/room/router");
+const routerMessage = require("./routes/messages/router");
+const { streamRouter, stream } = require("./routes/stream/router");
+
+
+app.use(cors(), express.json(), routerAuth, routerUser);
+app.use("/stream", streamRouter);
+app.use("/room", routerRoom(stream));
+app.use("/message", routerMessage());
+
 
 const port = process.env.PORT || 5000;
-
-app.use(cors(), express.json(), routerAuth, routerUser, routerRoom);
-
 app.listen(port, () =>
   console.log(`
 --------------------------------

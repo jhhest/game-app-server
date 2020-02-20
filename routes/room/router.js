@@ -1,19 +1,47 @@
-const { Router } = require("express");
 const auth = require("../../auth/middleware");
-const router = new Router();
+
+const { Router } = require("express");
+
 const Room = require("./model.js");
 
-// FIXME: Get all the rooms
-router.get("/room", async (request, response) => response.send(await Room.findAll()));
+function factory(stream) {
+  const router = new Router();
+  console.log(`\n---\n factory in stream is initiated \n---\n`);
 
-// Create a new room. 
-router.post("/room/new", auth, async (request, response) => {
-  const { name } = request.body;
-  response.send(await Room.create({name: name}));
-});
+  // FIXME: Get all the rooms
+  router.get("/", async (request, response, next) => {
+    console.log(`\n---\n inside /room/ endpoint \n---\n`);
+    response.send(await Room.findAll());
+  });
 
-// TODO: assign user to a room. 
+  // Create a new room.
+  router.post("/new", async (request, response, next) => {
+    try {
+      const { name } = request.body;
+      const newRoom = await Room.create({ name });
 
+      const action = {
+        type: "room/ONE_ROOM",
+        payload: newRoom
+      };
+      const stringAction = JSON.stringify(action);
+      stream.send(stringAction);
+      response.json(newRoom);
+    } catch (error) {
+      next(error);
+    }
+  });
 
+  return router;
+  //     const stringAction = JSON.stringify(action);
+  //     stream.send(stringAction);
+  //     res.json(newRoom);
+  //   } catch (e) {
+  //     next(e);
+  //   }
+  // });
+}
 
-module.exports = router;
+// TODO: assign user to a room.
+
+module.exports = factory;
