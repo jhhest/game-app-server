@@ -13,7 +13,6 @@ const { streamRouter, stream } = require("./routes/stream/router");
 app.use(cors(), express.json(), routerAuth, routerUser);
 app.use("/stream", streamRouter);
 app.use("/room", routerRoom(stream));
-app.use("/message", routerMessage());
 
 
 const port = process.env.PORT || 5000;
