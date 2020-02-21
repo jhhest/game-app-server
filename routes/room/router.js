@@ -32,14 +32,36 @@ function factory(stream) {
     }
   });
 
+  router.post("/join", async (req, res, next) => {
+    const {
+      user,
+      body: { roomId }
+    } = req;
+    const room = await Room.findByPk(roomId);
+    let locked = room.locked;
+    if (!locked) {
+      locked = room.players === 1;
+      await room.update({ players: room.players + 1, locked });
+      const updatedUser = await user.update({ roomId: roomId });
+      if (locked) await Game.create({ roomId });
+
+      const updateRoom = JSON.stringify({
+        type: "room/UPDATE",
+        payload: {
+          id: roomId,
+          players: room.players,
+          locked
+        }
+      });
+      stream.send(updateRoom);
+
+      res.json(updatedUser);
+    } else {
+      res.status(400).send("Room full");
+    }
+  });
+
   return router;
-  //     const stringAction = JSON.stringify(action);
-  //     stream.send(stringAction);
-  //     res.json(newRoom);
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // });
 }
 
 // TODO: assign user to a room.

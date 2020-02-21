@@ -6,14 +6,14 @@ const Sse = require("json-sse");
 const routerAuth = require("./auth/router");
 const routerUser = require("./routes/user/router");
 const routerRoom = require("./routes/room/router");
+const gameRouter = require("./routes/game/router");
 const routerMessage = require("./routes/messages/router");
 const { streamRouter, stream } = require("./routes/stream/router");
 
-
 app.use(cors(), express.json(), routerAuth, routerUser);
 app.use("/stream", streamRouter);
-app.use("/room", routerRoom(stream));
-
+app.use("/room", /*authMiddleware,*/ routerRoom(stream));
+app.use("/game", /*authMiddleware,*/ gameRouter(stream));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () =>
